@@ -339,16 +339,30 @@
     });
   };
 
-  /* ── Now Showing (pick + theme + next) ─────── */
+  /* ── Now Showing (two picks + theme + next) ─── */
   RENDERERS.now = async () => {
-    const pick = await db.get('current_pick', {});
+    const pick  = await db.get('current_pick', {});
+    const pick2 = await db.get('current_pick_2', {});
     const theme = await db.get('current_theme', {});
-    const next = await db.get('next_theme', {});
+    const next  = await db.get('next_theme', {});
+
+    const pickFields = (prefix, p) => `
+      <div class="field"><label>Title</label><input class="input" id="${prefix}-title" value="${escapeHtml(p.title||'')}"></div>
+      <div class="field"><label>Director</label><input class="input" id="${prefix}-dir" value="${escapeHtml(p.director||'')}"></div>
+      <div class="field"><label>Year</label><input class="input" id="${prefix}-year" value="${escapeHtml(p.year||'')}"></div>
+      <div class="field"><label>Country</label><input class="input" id="${prefix}-country" value="${escapeHtml(p.country||'')}"></div>
+      <div class="field"><label>Runtime (min)</label><input class="input" id="${prefix}-run" value="${escapeHtml(p.runtime||'')}"></div>
+      <div class="field"><label>Screening</label><input class="input" id="${prefix}-scr" value="${escapeHtml(p.screening_date||'')}"></div>
+      <div class="field"><label>Venue</label><input class="input" id="${prefix}-venue" value="${escapeHtml(p.venue||'')}"></div>
+      <div class="field col-2"><label>Curator's note</label>
+        <textarea class="textarea" id="${prefix}-note">${escapeHtml(p.note||'')}</textarea>
+        <span class="help">Three or four sentences. Why this film, why now.</span></div>
+    `;
 
     $sec('now').innerHTML = `
-      ${headTpl('Now showing', 'The film, the theme, and the sealed-envelope reveal for next month. Edits go live the moment you save.')}
+      ${headTpl('Now showing', 'Two film picks, the monthly theme, and the sealed-envelope reveal. Edits go live the moment you save.')}
 
-      <div class="tip"><strong>Plain English →</strong><span>What you type here is what appears on the home page.</span></div>
+      <div class="tip"><strong>Plain English →</strong><span>What you type here appears on the home page instantly.</span></div>
 
       <h3 class="display" style="font-size:28px;margin-top:16px">This month's theme</h3>
       <div class="form-grid" style="margin-top:12px">
@@ -357,7 +371,7 @@
         <div class="field"><label>Month label</label><input class="input" id="t-month" value="${escapeHtml(theme.month||'')}">
           <span class="help">e.g. "May 2026"</span></div>
         <div class="field"><label>Italicised word</label><input class="input" id="t-word" value="${escapeHtml(theme.accent_word||'')}">
-          <span class="help">Last word that gets the indigo italic treatment. Leave blank for default.</span></div>
+          <span class="help">Last word that gets the indigo italic treatment.</span></div>
         <div class="field col-2"><label>One-paragraph blurb</label>
           <textarea class="textarea" id="t-blurb">${escapeHtml(theme.blurb||'')}</textarea>
           <span class="help">Two to four sentences. Appears under the theme name on the home page.</span></div>
@@ -365,26 +379,32 @@
 
       <div class="hr"></div>
 
-      <h3 class="display" style="font-size:28px">This month's film pick</h3>
-      <div class="form-grid" style="margin-top:12px">
-        <div class="field"><label>Title</label><input class="input" id="p-title" value="${escapeHtml(pick.title||'')}"></div>
-        <div class="field"><label>Director</label><input class="input" id="p-dir" value="${escapeHtml(pick.director||'')}"></div>
-        <div class="field"><label>Year</label><input class="input" id="p-year" value="${escapeHtml(pick.year||'')}"></div>
-        <div class="field"><label>Country</label><input class="input" id="p-country" value="${escapeHtml(pick.country||'')}"></div>
-        <div class="field"><label>Runtime (min)</label><input class="input" id="p-run" value="${escapeHtml(pick.runtime||'')}"></div>
-        <div class="field"><label>Screening</label><input class="input" id="p-scr" value="${escapeHtml(pick.screening_date||'')}"></div>
-        <div class="field col-2"><label>Curator's note</label>
-          <textarea class="textarea" id="p-note">${escapeHtml(pick.note||'')}</textarea>
-          <span class="help">Three or four sentences. Why this film, why now.</span></div>
-      </div>
+      <h3 class="display" style="font-size:28px">Pick 01 of 02</h3>
+      <div class="form-grid" style="margin-top:12px">${pickFields('p1', pick)}</div>
 
       <div class="preview-box">
-        <div class="label">Live preview</div>
+        <div class="label">Preview · Pick 01</div>
         <div class="preview-pick">
-          <div class="mini-poster">${(pick.title||'?').slice(0,10).toUpperCase()}</div>
+          <div class="mini-poster" id="prev1-poster">${(pick.title||'?').slice(0,10).toUpperCase()}</div>
           <div>
-            <div class="t" id="prev-title">${escapeHtml(pick.title||'')}</div>
-            <div class="sub" id="prev-sub">DIR ${escapeHtml(pick.director||'')} · ${escapeHtml(pick.year||'')}</div>
+            <div class="t" id="prev1-title">${escapeHtml(pick.title||'')}</div>
+            <div class="sub" id="prev1-sub">DIR ${escapeHtml(pick.director||'')} · ${escapeHtml(pick.year||'')}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <h3 class="display" style="font-size:28px">Pick 02 of 02</h3>
+      <div class="form-grid" style="margin-top:12px">${pickFields('p2', pick2)}</div>
+
+      <div class="preview-box">
+        <div class="label">Preview · Pick 02</div>
+        <div class="preview-pick">
+          <div class="mini-poster" id="prev2-poster">${(pick2.title||'?').slice(0,10).toUpperCase()}</div>
+          <div>
+            <div class="t" id="prev2-title">${escapeHtml(pick2.title||'')}</div>
+            <div class="sub" id="prev2-sub">DIR ${escapeHtml(pick2.director||'')} · ${escapeHtml(pick2.year||'')}</div>
           </div>
         </div>
       </div>
@@ -406,25 +426,34 @@
       </div>
     `;
 
-    // Live preview hookup
-    const upd = () => {
-      const t = document.querySelector('#p-title').value;
-      const d = document.querySelector('#p-dir').value;
-      const y = document.querySelector('#p-year').value;
-      document.querySelector('#prev-title').textContent = t;
-      document.querySelector('#prev-sub').textContent = `DIR ${d} · ${y}`;
-      document.querySelector('.mini-poster').textContent = (t||'?').slice(0,10).toUpperCase();
+    // Live previews
+    const upd1 = () => {
+      const t = document.querySelector('#p1-title').value;
+      document.querySelector('#prev1-poster').textContent = (t||'?').slice(0,10).toUpperCase();
+      document.querySelector('#prev1-title').textContent  = t;
+      document.querySelector('#prev1-sub').textContent    = `DIR ${document.querySelector('#p1-dir').value} · ${document.querySelector('#p1-year').value}`;
     };
-    ['#p-title','#p-dir','#p-year'].forEach(s => document.querySelector(s).addEventListener('input', upd));
+    const upd2 = () => {
+      const t = document.querySelector('#p2-title').value;
+      document.querySelector('#prev2-poster').textContent = (t||'?').slice(0,10).toUpperCase();
+      document.querySelector('#prev2-title').textContent  = t;
+      document.querySelector('#prev2-sub').textContent    = `DIR ${document.querySelector('#p2-dir').value} · ${document.querySelector('#p2-year').value}`;
+    };
+    ['#p1-title','#p1-dir','#p1-year'].forEach(s => document.querySelector(s).addEventListener('input', upd1));
+    ['#p2-title','#p2-dir','#p2-year'].forEach(s => document.querySelector(s).addEventListener('input', upd2));
 
     document.querySelector('#now-save').addEventListener('click', async () => {
       const v = (s) => document.querySelector(s).value;
       await db.set('current_theme', { name: v('#t-name'), month: v('#t-month'), accent_word: v('#t-word'), blurb: v('#t-blurb') });
       await db.set('current_pick', {
-        title: v('#p-title'), director: v('#p-dir'), year: v('#p-year'),
-        country: v('#p-country'), runtime: v('#p-run'),
-        screening_date: v('#p-scr'), note: v('#p-note'),
-        venue: pick.venue || ''
+        title: v('#p1-title'), director: v('#p1-dir'), year: v('#p1-year'),
+        country: v('#p1-country'), runtime: v('#p1-run'),
+        screening_date: v('#p1-scr'), venue: v('#p1-venue'), note: v('#p1-note')
+      });
+      await db.set('current_pick_2', {
+        title: v('#p2-title'), director: v('#p2-dir'), year: v('#p2-year'),
+        country: v('#p2-country'), runtime: v('#p2-run'),
+        screening_date: v('#p2-scr'), venue: v('#p2-venue'), note: v('#p2-note')
       });
       const dt = v('#n-date');
       await db.set('next_theme', {

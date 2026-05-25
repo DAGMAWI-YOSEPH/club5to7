@@ -2,7 +2,7 @@
    Only seeds when tables are empty — safe to run on every page load.          */
 
 (function () {
-  const SINGLETONS = ['site_settings', 'current_pick', 'current_theme', 'next_theme'];
+  const SINGLETONS = ['site_settings', 'current_pick', 'current_pick_2', 'current_theme', 'next_theme'];
   async function need(key) {
     if (SINGLETONS.includes(key)) {
       const val = await db.get(key, null);
@@ -53,6 +53,24 @@
         screening_date: 'Saturday 31 May · 17:00',
         venue: 'The flat, Kazanchis (DM for address)',
         poster_caption: 'TEZA · 1985 · poster placeholder'
+      });
+    }
+
+    // Second film pick (singleton)
+    if (await need('current_pick_2')) {
+      await db.set('current_pick_2', {
+        title: 'Yeelen',
+        director: 'Souleymane Cissé',
+        year: 1987,
+        country: 'Mali',
+        runtime: 105,
+        note:
+          "A son returns home to confront his sorcerer father — and everything "
+          + "the land has held in silence. Cissé turns the Bambara landscape into "
+          + "a living archive. One of the great films of the continent.",
+        screening_date: 'Saturday 31 May · 17:00',
+        venue: 'The flat, Kazanchis (DM for address)',
+        poster_caption: 'YEELEN · 1987 · poster placeholder'
       });
     }
 

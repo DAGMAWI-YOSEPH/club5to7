@@ -105,10 +105,12 @@
 .article .body blockquote {
   font-family: var(--f-display);
   font-size: 28px; line-height: 1.15;
-  border-left: 3px solid var(--accent);
-  padding-left: var(--s-4);
+  padding: var(--s-4) var(--s-5);
   margin: var(--s-5) 0;
   color: var(--ink);
+  background: var(--bg-deep);
+  border-radius: var(--r-card);
+  border: 1px solid var(--rule);
 }
 .article .body em { font-style: italic; }
 .article .body strong { font-weight: 600; }
