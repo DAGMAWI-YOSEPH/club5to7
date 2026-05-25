@@ -4,20 +4,20 @@
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Color · light */
-  --bg:           #F4EFE5;
-  --bg-deep:      #EAE4D6;
-  --surface:      #FBF8F1;
-  --ink:          #19170F;
-  --ink-mute:     #6B6557;
-  --ink-soft:     #A39B89;
-  --rule:         rgba(25, 23, 15, 0.85);
-  --rule-soft:    rgba(25, 23, 15, 0.18);
-  --accent:       #B84D1C;  /* rust */
-  --accent-ink:   #FDF9F5;
-  --accent-soft:  #F6E3D8;
-  --warn:         #C8401C;  /* "live" / pinned dot */
-  --gold:         #C9A227;  /* used very sparingly */
+  /* Color · light — aged warning-poster palette */
+  --bg:           #C8B264;  /* aged hazard yellow */
+  --bg-deep:      #B8A050;
+  --surface:      #D8C47C;
+  --ink:          #100802;  /* near black, warm */
+  --ink-mute:     #5C3E14;
+  --ink-soft:     #8A6828;
+  --rule:         rgba(16, 8, 2, 0.88);
+  --rule-soft:    rgba(16, 8, 2, 0.24);
+  --accent:       #8C1A14;  /* deep warning red */
+  --accent-ink:   #F0E4C0;
+  --accent-soft:  #D4A898;
+  --warn:         #CC4E14;  /* hazard orange */
+  --gold:         #C49010;  /* used very sparingly */
 
   /* Type */
   --f-display: "Caprasimo", "Cooper Std", Georgia, serif;
@@ -69,19 +69,20 @@
 }
 
 [data-theme="dark"] {
-  --bg:           #0C0B08;
-  --bg-deep:      #080705;
-  --surface:      #15130E;
-  --ink:          #EDE6D3;
-  --ink-mute:     #8D8675;
-  --ink-soft:     #5A5447;
-  --rule:         rgba(237, 230, 211, 0.85);
-  --rule-soft:    rgba(237, 230, 211, 0.16);
-  --accent:       #D96830;  /* rust warm */
-  --accent-ink:   #0E0804;
-  --accent-soft:  #2B1208;
-  --warn:         #E96A45;
-  --gold:         #E0B73C;
+  /* Dark — quarantine-poster red-black */
+  --bg:           #0A0402;
+  --bg-deep:      #140806;
+  --surface:      #1C0C08;
+  --ink:          #D4B864;  /* aged gold text */
+  --ink-mute:     #8A6A2C;
+  --ink-soft:     #5C4418;
+  --rule:         rgba(212, 184, 100, 0.8);
+  --rule-soft:    rgba(212, 184, 100, 0.18);
+  --accent:       #B02018;  /* bright warning red */
+  --accent-ink:   #F0E4C0;
+  --accent-soft:  #2A0C0A;
+  --warn:         #D45A20;
+  --gold:         #C49A20;
 }
 
 /* Web fonts */

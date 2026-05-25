@@ -22,8 +22,19 @@
   position: relative;
   padding: var(--s-7) 0 var(--s-6);
   margin-bottom: var(--s-7);
-  border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
+}
+/* Hazard stripe replaces top border on theme banner */
+.theme-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ink)   0px, var(--ink)   7px,
+    var(--accent) 7px, var(--accent) 14px
+  );
 }
 .theme-banner .eyebrow-row {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -167,8 +178,13 @@
 }
 .film-details .stamp {
   font-family: var(--f-mono); font-size: var(--t-mono);
-  letter-spacing: 0.12em; text-transform: uppercase;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--accent);
+  display: inline-block;
+  border: 2px solid var(--accent);
+  padding: 3px 10px 2px;
+  transform: rotate(-0.8deg);
+  font-weight: 700;
 }
 .film-details h2 {
   font-family: var(--f-display);

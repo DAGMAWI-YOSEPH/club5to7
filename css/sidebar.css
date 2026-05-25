@@ -5,7 +5,7 @@
 .sidebar {
   background: var(--ink);
   color: var(--bg);
-  padding: var(--s-5) 0 var(--s-5) var(--s-4);
+  padding: 0 0 var(--s-5) var(--s-4);
   position: sticky;
   top: 0;
   height: 100vh;
@@ -13,7 +13,24 @@
   flex-direction: column;
   gap: var(--s-5);
   border-right: 1px solid var(--ink);
+  overflow: hidden;
 }
+
+/* Hazard stripe at sidebar top */
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 7px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0px, var(--accent) 7px,
+    var(--bg)     7px, var(--bg)     14px
+  );
+  z-index: 2;
+  flex-shrink: 0;
+}
+
 
 /* Perforations: holes punched in the right edge (overlaying the main bg color) */
 .sidebar::before {
@@ -32,6 +49,7 @@
   flex-direction: column;
   gap: 2px;
   padding: var(--s-2) var(--s-5) var(--s-2) 0;
+  margin-top: var(--s-5);
   margin-bottom: var(--s-2);
   cursor: pointer;
 }
