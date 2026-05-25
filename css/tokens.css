@@ -1,34 +1,34 @@
 /* ─────────────────────────────────────────────────────────────────
-   Club5to7 · design tokens  ·  single dark theme
+   Club5to7 · design tokens  ·  post-apocalyptic cinema single theme
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Dark · post-apocalyptic warning-poster cinema */
-  --bg:           #0A0402;
-  --bg-deep:      #060201;
-  --surface:      #130806;
-  --ink:          #D4B864;  /* aged gold  */
-  --ink-mute:     #8A6A2C;
-  --ink-soft:     #5C4418;
-  --rule:         rgba(212, 184, 100, 0.70);
-  --rule-soft:    rgba(212, 184, 100, 0.14);
-  --accent:       #B02018;  /* warning red */
-  --accent-ink:   #F0E4C0;
-  --accent-soft:  #2A0C0A;
-  --warn:         #D45A20;  /* hazard orange */
-  --gold:         #C49A20;
-
-  /* Sidebar gets its own dark bg for depth separation */
-  --sidebar-bg:   #0F0603;
+  /* Palette — charred black, aged parchment, warning red */
+  --bg:           #080301;
+  --bg-deep:      #040100;
+  --surface:      #110604;
+  --surface-2:    #1A0906;
+  --ink:          #C8A85C;   /* aged parchment/tan */
+  --ink-mute:     #7A5E28;
+  --ink-soft:     #4A3810;
+  --rule:         rgba(200, 168, 92, 0.60);
+  --rule-soft:    rgba(200, 168, 92, 0.12);
+  --accent:       #CC1208;   /* blood / warning red */
+  --accent-ink:   #F0DDB0;
+  --accent-soft:  #280804;
+  --warn:         #D04A10;   /* hazard orange */
+  --gold:         #B8940C;
+  --sidebar-bg:   #0C0402;
 
   /* Type */
   --f-display: "Caprasimo", "Cooper Std", Georgia, serif;
   --f-body:    "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
   --f-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
-  --t-xxl: clamp(56px, 9vw, 144px);
-  --t-xl:  clamp(40px, 5.6vw, 84px);
-  --t-l:   clamp(28px, 3.2vw, 44px);
+  /* Type scale — aggressive, poster-grade */
+  --t-xxl: clamp(80px, 13vw, 220px);
+  --t-xl:  clamp(54px, 8vw,  130px);
+  --t-l:   clamp(32px, 3.8vw, 52px);
   --t-m:   22px;
   --t-base:16px;
   --t-s:   14px;
@@ -47,14 +47,14 @@
   --s-9: 96px;
   --s-10:128px;
 
-  /* Geometry */
+  /* Geometry — sharper, more industrial */
   --r-sharp: 0px;
-  --r-card:  6px;
-  --r-soft:  14px;
+  --r-card:  4px;
+  --r-soft:  10px;
   --r-pill:  999px;
 
   --rule-w: 1px;
-  --rule-strong: 1.5px;
+  --rule-strong: 2px;
 
   /* Layout */
   --sidebar-w: 232px;

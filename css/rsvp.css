@@ -13,34 +13,48 @@
 @media (max-width: 880px) { .rsvp-hero { grid-template-columns: 1fr; } }
 
 .rsvp-hero .event-cover {
-  background: var(--ink); color: var(--bg);
+  background: var(--bg-deep); color: var(--ink);
   border-radius: var(--r-card);
   padding: var(--s-5);
   position: relative; overflow: hidden;
   display: flex; flex-direction: column; gap: var(--s-3);
   aspect-ratio: 4/5;
+  border: 1px solid var(--rule-soft);
   background-image:
-    repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 14px);
+    repeating-linear-gradient(135deg, rgba(200, 168, 92, 0.04) 0 1px, transparent 1px 14px);
+}
+/* Hazard stripe at top of event cover */
+.rsvp-hero .event-cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0px, var(--accent) 6px,
+    var(--bg-deep) 6px, var(--bg-deep) 12px
+  );
 }
 .rsvp-hero .event-cover .pmark {
   font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.55);
+  color: var(--ink-mute);
   text-transform: uppercase;
+  margin-top: var(--s-3);
 }
 .rsvp-hero .event-cover .pcaption {
   font-family: var(--f-mono); font-size: 10px;
-  color: rgba(255,255,255,0.45);
+  color: var(--ink-soft);
   letter-spacing: 0.12em;
   margin-top: auto;
 }
 .rsvp-hero .event-cover .ptitle {
-  font-family: var(--f-display); font-size: 56px;
-  line-height: 0.95; color: var(--bg);
+  font-family: var(--f-display); font-size: clamp(48px, 8vw, 72px);
+  line-height: 0.92; color: var(--ink);
+  letter-spacing: -0.025em;
 }
 .rsvp-hero .event-cover .pdate {
   font-family: var(--f-mono); font-size: 12px;
   letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.7);
+  color: var(--accent);
   margin-top: var(--s-3);
 }
 

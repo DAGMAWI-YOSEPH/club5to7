@@ -1,96 +1,139 @@
 /* ─────────────────────────────────────────────────────────────────
-   Home · "Now Showing"
+   Home · Now Showing  ·  post-apocalyptic cinema poster energy
    ───────────────────────────────────────────────────────────────── */
 
+/* ── Marquee ─────────────────────────────────────────────────── */
 .home-marquee {
-  margin: var(--s-3) 0 var(--s-6);
-  display: flex; align-items: baseline; gap: var(--s-3);
+  margin: var(--s-4) 0 var(--s-6);
+  display: flex; align-items: center; gap: var(--s-3);
   flex-wrap: wrap;
   color: var(--ink-mute);
   font-family: var(--f-mono); font-size: var(--t-mono);
-  letter-spacing: 0.08em; text-transform: uppercase;
+  letter-spacing: 0.1em; text-transform: uppercase;
 }
 .home-marquee .live {
   display: inline-flex; align-items: center; gap: 6px;
-  color: var(--warn);
+  color: var(--accent);
 }
-.home-marquee .live .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: pulse 1.8s infinite; }
-.home-marquee .ge { font-family: "Noto Sans Ethiopic", serif; color: var(--accent); font-size: 14px; }
-.home-marquee .sep { opacity: 0.4; }
+.home-marquee .live .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; animation: pulse 1.8s infinite;
+}
+.home-marquee .ge { font-family: "Noto Sans Ethiopic", serif; color: var(--ink); font-size: 14px; }
+.home-marquee .sep { opacity: 0.35; }
 
+/* ── Theme banner — poster-grade hero ───────────────────────── */
 .theme-banner {
   position: relative;
-  padding: var(--s-7) 0 var(--s-6);
+  padding: var(--s-8) 0 var(--s-7);
   margin-bottom: var(--s-7);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
+  overflow: hidden;
 }
-/* Hazard stripe replaces top border on theme banner */
+
+/* Thick hazard stripe at top */
 .theme-banner::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 6px;
+  height: 14px;
   background: repeating-linear-gradient(
     -45deg,
-    var(--ink)    0px, var(--ink)    7px,
-    var(--accent) 7px, var(--accent) 14px
+    var(--ink)    0px, var(--ink)    10px,
+    var(--accent) 10px, var(--accent) 20px
   );
 }
+
+/* Red paint diagonal slash — bleeds in from the right */
+.theme-banner::after {
+  content: '';
+  position: absolute;
+  top: 0; right: -60px; bottom: 0;
+  width: 45%;
+  background: linear-gradient(135deg,
+    transparent 0%,
+    rgba(180, 16, 8, 0.12) 40%,
+    rgba(180, 16, 8, 0.06) 70%,
+    transparent 100%);
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+}
+
 .theme-banner .eyebrow-row {
   display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-5);
   font-family: var(--f-mono); font-size: var(--t-mono);
   color: var(--ink-mute);
-  letter-spacing: 0.1em; text-transform: uppercase;
+  letter-spacing: 0.14em; text-transform: uppercase;
 }
+
+/* The big one — fills the frame like a protest poster */
 .theme-banner h1 {
   font-family: var(--f-display);
   font-size: var(--t-xxl);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
   word-break: break-word;
+  position: relative;
+  z-index: 1;
 }
 .theme-banner h1 em {
   font-style: italic;
   color: var(--accent);
+  display: block;
 }
+
 .theme-banner .blurb {
-  max-width: 60ch;
+  max-width: 52ch;
   margin-top: var(--s-5);
-  font-size: var(--t-m);
-  line-height: 1.45;
-  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-mute);
+  position: relative;
+  z-index: 1;
 }
+
+/* Next theme reveal — top-right stamp */
 .theme-banner .reveal {
-  position: absolute; right: 0; top: var(--s-7);
+  position: absolute; right: 0; top: var(--s-8);
   text-align: right;
   font-family: var(--f-mono); font-size: var(--t-mono);
-  color: var(--ink-mute);
-  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em; text-transform: uppercase;
   display: none;
+  z-index: 1;
 }
 @media (min-width: 980px) { .theme-banner .reveal { display: block; } }
 .theme-banner .reveal .next-name {
   display: block;
   font-family: var(--f-display);
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: -0.01em;
   color: var(--ink);
   text-transform: none;
   margin-top: 4px;
 }
 
-/* Now showing — two monthly picks */
+/* ── Now showing — two picks ─────────────────────────────────── */
 .now-showing {
-  margin-bottom: var(--s-8);
+  margin-bottom: var(--s-9);
 }
 
-.film-slot {
-  display: block;
-}
+.film-slot { display: block; }
 
 .slot-header {
   margin-bottom: var(--s-4);
+  display: flex; align-items: center; gap: var(--s-4);
+}
+
+/* Red warning stripe left of pick header */
+.slot-header::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 32px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 .slot-body {
@@ -102,17 +145,31 @@
 @media (max-width: 1100px) { .slot-body { grid-template-columns: 240px 1fr; } }
 @media (max-width: 900px)  { .slot-body { grid-template-columns: 1fr; } }
 
+/* The divider between picks — more dramatic */
 .pick-rule {
   border: none;
   border-top: 1px solid var(--rule);
-  margin: var(--s-7) 0;
+  margin: var(--s-8) 0;
+  position: relative;
+}
+.pick-rule::after {
+  content: '· · ·';
+  position: absolute;
+  left: 50%; top: -10px;
+  transform: translateX(-50%);
+  background: var(--bg);
+  padding: 0 16px;
+  font-family: var(--f-mono); font-size: 10px;
+  color: var(--ink-soft);
+  letter-spacing: 0.4em;
 }
 
+/* ── Poster ──────────────────────────────────────────────────── */
 .poster {
   position: relative;
   aspect-ratio: 2/3;
   width: 100%;
-  max-width: 360px;
+  max-width: 340px;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: var(--r-card);
@@ -121,16 +178,18 @@
   text-align: center;
   min-width: 0;
 }
+/* Cross-hatch placeholder texture */
 .poster::before {
   content: "";
   position: absolute; inset: 0;
   background:
-    repeating-linear-gradient(135deg, var(--rule-soft) 0 1px, transparent 1px 12px);
+    repeating-linear-gradient(45deg,  var(--rule-soft) 0 1px, transparent 1px 14px),
+    repeating-linear-gradient(-45deg, var(--rule-soft) 0 1px, transparent 1px 14px);
 }
 .poster .poster-inner {
   position: relative;
-  padding: 8% 12%;
-  display: flex; flex-direction: column; gap: 8px;
+  padding: 8% 10%;
+  display: flex; flex-direction: column; gap: 10px;
   align-items: center;
   min-width: 0;
   width: 100%;
@@ -138,19 +197,20 @@
 }
 .poster .ptitle {
   font-family: var(--f-display);
-  font-size: clamp(36px, 8vw, 64px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  font-size: clamp(32px, 7vw, 58px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--ink);
 }
 .poster .pmark {
-  font-family: var(--f-mono); font-size: 10px;
-  letter-spacing: 0.18em; color: var(--ink-mute);
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.2em; color: var(--ink-soft);
   text-transform: uppercase;
   max-width: 100%;
   word-break: break-word;
 }
 .poster .pdir {
-  font-family: var(--f-mono); font-size: 11px;
+  font-family: var(--f-mono); font-size: 10px;
   color: var(--ink-mute);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -165,70 +225,85 @@
 .poster.has-image::before      { display: none; }
 .poster.has-image .poster-inner { display: none; }
 
+/* Film reel perforations */
 .poster .reel-perfs {
-  position: absolute; top: 10px; bottom: 10px; left: 6px;
-  width: 8px;
-  background: radial-gradient(circle, var(--rule) 0 2px, transparent 2.5px) 0 0 / 8px 18px repeat-y;
+  position: absolute; top: 8px; bottom: 8px; left: 5px;
+  width: 7px;
+  background: radial-gradient(circle, var(--rule) 0 2px, transparent 2.5px) 0 0 / 7px 16px repeat-y;
+  opacity: 0.6;
 }
-.poster .reel-perfs.right { left: auto; right: 6px; }
+.poster .reel-perfs.right { left: auto; right: 5px; }
 
+/* ── Film details ────────────────────────────────────────────── */
 .film-details {
   display: flex; flex-direction: column; gap: var(--s-4);
   min-width: 0;
 }
+
+/* Pick stamp */
 .film-details .stamp {
-  font-family: var(--f-mono); font-size: var(--t-mono);
-  letter-spacing: 0.22em; text-transform: uppercase;
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.26em; text-transform: uppercase;
   color: var(--accent);
   display: inline-block;
   border: 2px solid var(--accent);
-  padding: 3px 10px 2px;
+  padding: 4px 12px 3px;
   transform: rotate(-0.8deg);
   font-weight: 700;
+  width: fit-content;
 }
+
+/* Film title — big, threatening */
 .film-details h2 {
   font-family: var(--f-display);
-  font-size: var(--t-xl);
-  line-height: 0.95;
-  letter-spacing: -0.025em;
+  font-size: clamp(52px, 6.5vw, 100px);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  word-break: break-word;
 }
+
 .film-details .credits {
-  display: flex; gap: var(--s-5); flex-wrap: wrap;
-  font-family: var(--f-mono); font-size: 13px;
+  display: flex; gap: var(--s-4); flex-wrap: wrap;
+  font-family: var(--f-mono); font-size: 12.5px;
   color: var(--ink-mute); letter-spacing: 0.04em;
 }
 .film-details .credits span strong {
-  display: block; color: var(--ink-soft); font-size: 10px;
-  letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
-  margin-bottom: 2px;
+  display: block; color: var(--ink-soft); font-size: 9px;
+  letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+  margin-bottom: 3px;
 }
+
 .film-details .note {
-  font-size: 17px; line-height: 1.55;
+  font-size: 16px; line-height: 1.6;
   color: var(--ink);
-  max-width: 58ch;
+  max-width: 56ch;
   background: var(--surface);
   border: 1px solid var(--rule-soft);
-  border-radius: 6px;
+  border-radius: var(--r-card);
   padding: var(--s-4);
 }
+
 .film-details .meta-row {
   display: flex; gap: var(--s-4); flex-wrap: wrap;
   align-items: center;
-  font-size: var(--t-s); color: var(--ink-mute);
+  font-size: var(--t-s); font-family: var(--f-mono); color: var(--ink-mute);
+  letter-spacing: 0.04em;
   padding-top: var(--s-3);
   border-top: 1px dashed var(--rule-soft);
 }
+
 .film-details .cta-row {
   display: flex; gap: var(--s-3); flex-wrap: wrap;
   margin-top: auto;
 }
 
-/* Quick tiles */
+/* ── Quick tiles ─────────────────────────────────────────────── */
 .tiles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-4);
+  gap: 1px;
   margin-top: var(--s-6);
+  border: 1px solid var(--rule);
 }
 @media (max-width: 880px) { .tiles { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 540px) { .tiles { grid-template-columns: 1fr; } }
@@ -236,79 +311,100 @@
 .tile {
   position: relative;
   background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-card);
   padding: var(--s-5);
   display: flex; flex-direction: column; gap: var(--s-3);
   min-height: 180px;
-  transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+  transition: background var(--t-fast) var(--ease);
+  border-right: 1px solid var(--rule);
 }
-.tile:hover { transform: translateY(-2px); border-color: var(--accent); }
+.tile:last-child { border-right: none; }
+.tiles .tile:nth-child(3) { border-right: none; }
+@media (max-width: 880px) { .tiles .tile:nth-child(3) { border-right: 1px solid var(--rule); } .tiles .tile:nth-child(2n) { border-right: none; } }
+@media (max-width: 540px) { .tile { border-right: none; } }
+
+.tile:hover { background: var(--surface-2); }
+.tile:hover .arrow { color: var(--accent); }
+
 .tile .num {
-  font-family: var(--f-mono); font-size: 11px;
-  letter-spacing: 0.15em; color: var(--ink-mute);
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.2em; color: var(--ink-soft);
   text-transform: uppercase;
 }
 .tile h3 {
   font-family: var(--f-display);
-  font-size: 26px; line-height: 1;
+  font-size: 28px; line-height: 1;
   letter-spacing: -0.015em;
 }
-.tile p { font-size: var(--t-s); color: var(--ink-mute); line-height: 1.45; }
+.tile p { font-size: var(--t-s); color: var(--ink-mute); line-height: 1.5; }
 .tile .arrow {
   position: absolute; right: var(--s-4); bottom: var(--s-4);
-  font-family: var(--f-mono); font-size: 14px;
-  color: var(--ink-mute);
-  transition: transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  font-family: var(--f-mono); font-size: 16px;
+  color: var(--ink-soft);
+  transition: color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
 }
-.tile:hover .arrow { transform: translateX(4px); color: var(--accent); }
+.tile:hover .arrow { transform: translateX(3px); }
 
-/* Reveal countdown card — gold on dark, very dramatic */
+/* ── Reveal countdown — gold panel ───────────────────────────── */
 .reveal-card {
   margin-top: var(--s-8);
-  padding: var(--s-6) var(--s-6);
+  padding: var(--s-7) var(--s-6);
   border: 1px solid var(--rule);
   border-radius: var(--r-card);
-  background: var(--ink);   /* aged gold */
-  color: var(--bg-deep);    /* near-black text on gold */
-  display: grid; grid-template-columns: 1fr auto; gap: var(--s-5);
+  background: var(--ink);
+  color: var(--bg-deep);
+  display: grid; grid-template-columns: 1fr auto; gap: var(--s-6);
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+/* Hazard stripe at reveal card top */
+.reveal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 10px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0px, var(--accent) 9px,
+    var(--bg-deep) 9px, var(--bg-deep) 18px
+  );
 }
 @media (max-width: 720px) { .reveal-card { grid-template-columns: 1fr; } }
-.reveal-card .eyebrow { color: var(--ink-soft); }
+.reveal-card .eyebrow { color: var(--ink-soft); font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; }
 .reveal-card h3 {
   font-family: var(--f-display);
   font-size: var(--t-l);
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--bg-deep);
+  line-height: 0.95;
 }
-.reveal-card .teaser { color: #3A2000; font-size: var(--t-s); margin-top: 8px; max-width: 50ch; opacity: 0.8; }
+.reveal-card .teaser { color: #3A2000; font-size: var(--t-s); margin-top: 10px; max-width: 46ch; line-height: 1.5; }
 .reveal-card .countdown {
   display: flex; gap: var(--s-3);
   font-family: var(--f-mono);
 }
 .reveal-card .countdown .unit {
   text-align: center;
-  border: 1px solid rgba(0,0,0,0.18);
+  border: 1px solid rgba(0,0,0,0.16);
   border-radius: var(--r-card);
   padding: 12px 16px;
-  min-width: 70px;
-  background: rgba(0,0,0,0.07);
+  min-width: 72px;
+  background: rgba(0,0,0,0.08);
 }
-.reveal-card .countdown .n { font-family: var(--f-display); font-size: 30px; line-height: 1; color: var(--accent); }
+.reveal-card .countdown .n { font-family: var(--f-display); font-size: 32px; line-height: 1; color: var(--accent); }
 .reveal-card .countdown .l {
-  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--ink-soft); margin-top: 6px;
 }
 
-/* Footer print bar */
+/* ── Print bar ───────────────────────────────────────────────── */
 .print-bar {
   margin-top: var(--s-9);
   padding-top: var(--s-5);
   border-top: 1px solid var(--rule);
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--s-3);
-  font-family: var(--f-mono); font-size: 11px;
-  color: var(--ink-mute);
-  letter-spacing: 0.1em;
+  font-family: var(--f-mono); font-size: 10px;
+  color: var(--ink-soft);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }

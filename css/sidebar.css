@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────────
-   Sidebar · vertical filmstrip with perforations along edge
+   Sidebar · post-apocalyptic filmstrip
    ───────────────────────────────────────────────────────────────── */
 
 .sidebar {
@@ -11,52 +11,53 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: var(--s-5);
+  gap: var(--s-4);
   border-right: 1px solid var(--rule-soft);
   overflow: hidden;
 }
 
-/* Hazard stripe at sidebar top */
+/* Thick hazard stripe at top */
 .sidebar::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 7px;
+  height: 10px;
   background: repeating-linear-gradient(
     -45deg,
-    var(--accent) 0px, var(--accent) 7px,
-    var(--bg-deep) 7px, var(--bg-deep) 14px
+    var(--accent) 0px, var(--accent) 8px,
+    var(--bg-deep) 8px, var(--bg-deep) 16px
   );
   z-index: 2;
   flex-shrink: 0;
 }
 
-/* Perforations: holes punched in the right edge */
+/* Film perforations on right edge */
 .sidebar::before {
   content: "";
   position: absolute;
   top: 0; right: 0; bottom: 0;
   width: 14px;
   background:
-    radial-gradient(circle at 7px 12px, var(--bg) 0 3.5px, transparent 4px) 0 0 / 14px 28px repeat-y;
+    radial-gradient(circle at 7px 10px, var(--bg) 0 3px, transparent 3.5px) 0 0 / 14px 24px repeat-y;
   pointer-events: none;
   z-index: 1;
 }
 
+/* ── Brand ────────────────────────────────────────────────────── */
 .brand {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: var(--s-2) var(--s-5) var(--s-2) 0;
   margin-top: var(--s-5);
-  margin-bottom: var(--s-2);
+  margin-bottom: var(--s-1);
   cursor: pointer;
 }
 .brand .mark {
   font-family: var(--f-display);
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-size: 32px;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
   color: var(--ink);
 }
 .brand .mark em {
@@ -65,69 +66,74 @@
 }
 .brand .tag {
   font-family: var(--f-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-mute);
+  color: var(--ink-soft);
+  margin-top: 2px;
 }
 
+/* ── Nav ──────────────────────────────────────────────────────── */
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   padding-right: var(--s-5);
   flex: 1;
   overflow-y: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
+.nav::-webkit-scrollbar { display: none; }
 
 .nav a {
   display: flex;
   align-items: center;
   gap: var(--s-3);
-  padding: 9px 12px;
-  border-radius: 4px;
-  color: var(--ink-mute);
-  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 0;
+  color: var(--ink-soft);
+  font-size: 13.5px;
   font-weight: 500;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.01em;
   position: relative;
   transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
 }
 .nav a:hover {
-  background: rgba(212, 184, 100, 0.06);
+  background: rgba(200, 168, 92, 0.05);
   color: var(--ink);
 }
 .nav a.active {
   color: var(--ink);
-  background: rgba(212, 184, 100, 0.08);
+  background: rgba(200, 168, 92, 0.08);
 }
 .nav a.active::before {
   content: "";
   position: absolute;
-  left: -6px; top: 6px; bottom: 6px;
+  left: -4px; top: 4px; bottom: 4px;
   width: 3px; background: var(--accent);
-  border-radius: 3px;
 }
 
 .nav a .num {
   font-family: var(--f-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
+  font-size: 10px;
+  letter-spacing: 0.08em;
   color: var(--ink-soft);
-  width: 24px;
+  width: 22px;
+  flex-shrink: 0;
 }
 .nav a.active .num { color: var(--accent); }
 
 .nav .group-label {
   font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 9px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  padding: var(--s-4) 12px 6px;
+  padding: var(--s-4) 10px 4px;
+  opacity: 0.7;
 }
 
+/* ── Footer ──────────────────────────────────────────────────── */
 .sidebar-foot {
   display: flex;
   flex-direction: column;
@@ -137,31 +143,33 @@
 .sidebar-foot .session {
   display: flex; align-items: center; gap: var(--s-2);
   padding: 8px 10px;
-  border-radius: 4px;
-  background: rgba(212, 184, 100, 0.06);
+  border-radius: var(--r-card);
+  background: rgba(200, 168, 92, 0.05);
+  border: 1px solid var(--rule-soft);
   font-size: 12.5px;
 }
 .sidebar-foot .session .avatar {
-  width: 24px; height: 24px; border-radius: 50%;
+  width: 26px; height: 26px; border-radius: var(--r-sharp);
   background: var(--accent); color: var(--accent-ink);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--f-display); font-size: 13px;
+  font-family: var(--f-display); font-size: 14px;
+  flex-shrink: 0;
 }
-.sidebar-foot .session .who { font-weight: 500; color: var(--ink); }
+.sidebar-foot .session .who { font-weight: 500; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .sidebar-foot .session .role {
-  font-family: var(--f-mono); font-size: 10px;
-  color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.1em;
+  font-family: var(--f-mono); font-size: 9px;
+  color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.12em;
 }
-
 .sidebar-foot .reel-info {
   font-family: var(--f-mono);
-  font-size: 10px;
+  font-size: 9.5px;
   color: var(--ink-soft);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   display: flex; justify-content: space-between;
+  text-transform: uppercase;
 }
 
-/* Mobile: collapse to a top bar */
+/* ── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 880px) {
   .sidebar {
     position: fixed;
@@ -170,11 +178,12 @@
     flex-direction: row;
     align-items: center;
     gap: var(--s-3);
-    padding: 12px 16px;
+    padding: 10px 16px;
     z-index: 80;
   }
   .sidebar::before { display: none; }
   .brand { flex-direction: row; align-items: baseline; gap: 8px; margin: 0; padding: 0; }
+  .brand .mark { font-size: 24px; }
   .brand .tag { display: none; }
   .nav { display: none; }
   .sidebar-foot { flex-direction: row; align-items: center; margin-left: auto; padding: 0; }
