@@ -126,6 +126,27 @@
   margin-left: auto;
 }
 
+/* GitHub button */
+.gh-btn {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.gh-btn:hover { opacity: 0.88; }
+
+/* "or" divider */
+.gate-divider {
+  display: flex; align-items: center; gap: var(--s-3);
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.gate-divider::before,
+.gate-divider::after {
+  content: ''; flex: 1;
+  border-top: 1px solid var(--rule-soft);
+}
+
 /* Spinner for loading state */
 @keyframes spin { to { transform: rotate(360deg); } }
 .spinner {

@@ -1,6 +1,4 @@
-/* supabase-auth.js · Supabase Auth wrapper for /my-admin
-   Uses the same project client as db.js — sessions are shared
-   via the Supabase SDK's localStorage store.                   */
+/* supabase-auth.js · Supabase Auth wrapper for /my-admin */
 
 (function () {
   const SUPABASE_URL = 'https://pyrsqzlvnhhzokzxxolr.supabase.co';
@@ -13,14 +11,17 @@
       }));
     }
     if (window.supabase) init();
-    else {
-      /* CDN loaded by the <script> tag above this one in the HTML */
-      document.currentScript?.addEventListener?.('load', init);
-      window.addEventListener('load', () => { if (window.supabase) init(); }, { once: true });
-    }
+    else window.addEventListener('load', () => { if (window.supabase) init(); }, { once: true });
   });
 
   window.supabaseAuth = {
+    async signInWithGitHub() {
+      const c = await _ready;
+      return c.auth.signInWithOAuth({
+        provider: 'github',
+        options: { redirectTo: window.location.origin + '/my-admin.html' }
+      });
+    },
     async signIn(email, password) {
       const c = await _ready;
       return c.auth.signInWithPassword({ email, password });
@@ -39,10 +40,6 @@
       return c.auth.resetPasswordForEmail(email, {
         redirectTo: window.location.origin + '/my-admin.html'
       });
-    },
-    async updatePassword(newPassword) {
-      const c = await _ready;
-      return c.auth.updateUser({ password: newPassword });
     },
     onAuthChange(cb) {
       _ready.then(c => c.auth.onAuthStateChange(cb));

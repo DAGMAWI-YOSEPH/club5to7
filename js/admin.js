@@ -69,57 +69,79 @@
           <div class="gate-card">
             <div class="gate-top">
               <div class="mark">Club<em>5to7</em></div>
-              <div class="tag">Curator access · Supabase Auth</div>
+              <div class="tag">Curator access</div>
             </div>
             <div class="gate-body">
               <h2>The Studio</h2>
-              <p class="sub">Sign in to manage everything — picks, digest, events, members.</p>
+              <p class="sub">Sign in to manage picks, digest, events, and members.</p>
               <div class="col">
                 ${opts.error ? `<div class="gate-error">${opts.error}</div>` : ''}
-                <div class="field">
-                  <label>Email</label>
-                  <input id="sa-email" class="input" type="email" placeholder="you@example.com" autocomplete="email" value="${opts.email||''}">
-                </div>
-                <div class="field">
-                  <label>Password</label>
-                  <input id="sa-pass" class="input" type="password" placeholder="••••••••" autocomplete="current-password">
-                </div>
-                <button class="btn primary" id="sa-enter" style="justify-content:center;gap:10px">
-                  <span>Enter the studio</span><span>→</span>
+                <button class="btn primary gh-btn" id="sa-github" style="justify-content:center;gap:10px;width:100%">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.031 1.531 1.031.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .268.18.579.688.481C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
+                  <span>Sign in with GitHub</span>
                 </button>
+                <div class="gate-divider"><span>or</span></div>
+                <div id="sa-email-form" class="${opts.showEmail ? '' : 'hide'}">
+                  <div class="col">
+                    <div class="field">
+                      <label>Email</label>
+                      <input id="sa-email" class="input" type="email" placeholder="you@example.com" autocomplete="email" value="${opts.email||''}">
+                    </div>
+                    <div class="field">
+                      <label>Password</label>
+                      <input id="sa-pass" class="input" type="password" placeholder="••••••••" autocomplete="current-password">
+                    </div>
+                    <button class="btn" id="sa-enter" style="justify-content:center;gap:10px">
+                      <span>Sign in with email</span><span>→</span>
+                    </button>
+                  </div>
+                </div>
+                <button class="gate-link" id="sa-toggle-email">${opts.showEmail ? '← Back' : 'Sign in with email instead'}</button>
               </div>
-            </div>
-            <div class="gate-foot">
-              <button class="gate-link" id="sa-forgot">Forgot password?</button>
             </div>
           </div>
         </div>
       `;
-      const emailEl = document.querySelector('#sa-email');
-      const passEl  = document.querySelector('#sa-pass');
-      const btn     = document.querySelector('#sa-enter');
 
-      async function trySignIn() {
-        const email = emailEl.value.trim();
-        const pw    = passEl.value;
-        if (!email || !pw) { renderSupabaseGate('login', { error: 'Email and password are required.', email }); return; }
-        btn.innerHTML = '<span class="spinner"></span><span>Signing in…</span>';
+      document.querySelector('#sa-github').addEventListener('click', async () => {
+        const btn = document.querySelector('#sa-github');
+        btn.innerHTML = '<span class="spinner"></span><span>Redirecting to GitHub…</span>';
         btn.disabled = true;
-        const { error } = await supabaseAuth.signIn(email, pw);
-        if (error) {
-          renderSupabaseGate('login', { error: error.message, email });
-        } else {
-          toast('Welcome back, curator');
-          bootWithUser();
-        }
-      }
-
-      btn.addEventListener('click', trySignIn);
-      passEl.addEventListener('keydown', e => { if (e.key === 'Enter') trySignIn(); });
-      document.querySelector('#sa-forgot').addEventListener('click', () => {
-        renderSupabaseGate('reset', { email: emailEl.value.trim() });
+        const { error } = await supabaseAuth.signInWithGitHub();
+        if (error) renderSupabaseGate('login', { error: error.message });
       });
-      setTimeout(() => emailEl.focus(), 60);
+
+      document.querySelector('#sa-toggle-email').addEventListener('click', () => {
+        renderSupabaseGate('login', { showEmail: !opts.showEmail });
+      });
+
+      if (opts.showEmail) {
+        const emailEl = document.querySelector('#sa-email');
+        const passEl  = document.querySelector('#sa-pass');
+        const btn     = document.querySelector('#sa-enter');
+
+        async function trySignIn() {
+          const email = emailEl.value.trim();
+          const pw    = passEl.value;
+          if (!email || !pw) { renderSupabaseGate('login', { error: 'Email and password are required.', email, showEmail: true }); return; }
+          btn.innerHTML = '<span class="spinner"></span><span>Signing in…</span>';
+          btn.disabled = true;
+          const { error } = await supabaseAuth.signIn(email, pw);
+          if (error) {
+            renderSupabaseGate('login', { error: error.message, email, showEmail: true });
+          } else {
+            toast('Welcome back, curator');
+            bootWithUser();
+          }
+        }
+
+        btn.addEventListener('click', trySignIn);
+        passEl.addEventListener('keydown', e => { if (e.key === 'Enter') trySignIn(); });
+        document.querySelector('#sa-forgot')?.addEventListener('click', () => {
+          renderSupabaseGate('reset', { email: emailEl.value.trim() });
+        });
+        setTimeout(() => emailEl.focus(), 60);
+      }
 
     } else if (view === 'reset') {
       gate.innerHTML = `
