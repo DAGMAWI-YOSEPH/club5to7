@@ -53,7 +53,9 @@
 .about-body em { font-style: italic; }
 
 .video-card {
-  background: var(--ink); color: var(--bg);
+  background: var(--surface);
+  border: 1px solid var(--rule-soft);
+  color: var(--ink);
   border-radius: var(--r-card);
   aspect-ratio: 16/9;
   display: flex; align-items: center; justify-content: center;
@@ -63,7 +65,7 @@
 .video-card::before {
   content: ""; position: absolute; inset: 0;
   background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 16px);
+    repeating-linear-gradient(45deg, rgba(212,184,100,0.05) 0 1px, transparent 1px 16px);
 }
 .video-card .play {
   position: relative;
@@ -74,7 +76,7 @@
 .video-card .caption {
   position: absolute; bottom: 16px; left: 16px; right: 16px;
   font-family: var(--f-mono); font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: var(--ink-mute);
   letter-spacing: 0.14em; text-transform: uppercase;
   text-align: left;
 }

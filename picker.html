@@ -11,7 +11,6 @@
 </head>
 <body data-page="picker">
 
-
   <main class="main">
     <div class="main-inner" data-screen-label="05 Picker">
 
@@ -20,8 +19,8 @@
           <span class="eyebrow">05 · Decide</span>
           <h1 style="margin-top:6px">The Wheel</h1>
           <p class="sub">
-            When the room can't agree, surrender to physics. The pool is editable
-            from the admin — add, remove, retire films at will.
+            Fifty films from Africa and world cinema, ready to spin.
+            Search to add more. When the room can't agree, surrender to physics.
           </p>
         </div>
         <div class="crumbs">
@@ -33,7 +32,8 @@
         <div class="wheel-stage">
           <div class="wheel-wrap">
             <div class="wheel-pointer"></div>
-            <svg id="wheel" class="wheel" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"></svg>
+            <svg id="wheel" class="wheel" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"
+                 style="transition: transform 5s cubic-bezier(.17,.67,.12,.99)"></svg>
             <div class="wheel-hub">5/7</div>
           </div>
           <button class="spin-btn" id="spin">Spin the wheel</button>
@@ -50,8 +50,16 @@
             </div>
           </div>
 
+          <!-- Search -->
+          <div class="card" style="padding:var(--s-4);position:relative">
+            <h4 style="font-family:var(--f-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px">Add a film</h4>
+            <input id="film-search" type="text" class="input" placeholder="Search title or director…"
+                   autocomplete="off" style="font-size:13px">
+            <div id="search-results" style="margin-top:4px"></div>
+          </div>
+
           <div class="card pool-card">
-            <h4>The pool · curated by the admin</h4>
+            <h4>The pool · <span id="pool-count-2"></span> films</h4>
             <ul class="pool" id="pool"></ul>
           </div>
 
@@ -74,12 +82,13 @@
   <script src="js/shell.js"></script>
   <script src="js/picker.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      await new Promise(r => setTimeout(r, 60));
-      const films = (await db.list('film_pool')).filter(f => f.in_rotation);
-      const el = document.querySelector('#pool-count');
-      if (el) el.textContent = films.length;
-    });
+    /* Sync pool count to secondary counter */
+    const pc2 = document.querySelector('#pool-count-2');
+    const pc1 = document.querySelector('#pool-count');
+    if (pc2 && pc1) {
+      const obs = new MutationObserver(() => { pc2.textContent = pc1.textContent; });
+      obs.observe(pc1, { characterData: true, childList: true });
+    }
   </script>
 </body>
 </html>

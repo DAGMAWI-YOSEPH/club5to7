@@ -150,19 +150,34 @@
 
       card.querySelectorAll('.tick').forEach(btn => btn.addEventListener('click', async () => {
         if (!session) { window.openSignIn(); return; }
-        const idx      = parseInt(btn.dataset.idx, 10);
+        const idx = parseInt(btn.dataset.idx, 10);
+        /* Toggle: clicking the last filled tick removes it; clicking any empty tick fills up to it */
         const newCount = (idx + 1 === sc.films) ? idx : idx + 1;
-        if (myLog) await db.update('challenge_log', myLog.id, { films_watched: newCount });
-        else       await db.insert('challenge_log', { challenge_id: ch.slug, member: session.handle, films_watched: newCount, bonus_hit: false });
-        render();
+        let ok = false;
+        if (myLog) {
+          const res = await db.update('challenge_log', myLog.id, { films_watched: newCount });
+          ok = !!res;
+        } else {
+          const res = await db.insert('challenge_log', { challenge_id: ch.slug, member: session.handle, films_watched: newCount, bonus_hit: false });
+          ok = !!res;
+        }
+        if (!ok) toast('Could not save — check your connection.');
+        else render();
       }));
 
       const bonusEl = card.querySelector('.bonus-toggle input');
       if (bonusEl) bonusEl.addEventListener('change', async () => {
         if (!session) return;
-        if (myLog) await db.update('challenge_log', myLog.id, { bonus_hit: bonusEl.checked });
-        else       await db.insert('challenge_log', { challenge_id: ch.slug, member: session.handle, films_watched: 0, bonus_hit: bonusEl.checked });
-        render();
+        let ok = false;
+        if (myLog) {
+          const res = await db.update('challenge_log', myLog.id, { bonus_hit: bonusEl.checked });
+          ok = !!res;
+        } else {
+          const res = await db.insert('challenge_log', { challenge_id: ch.slug, member: session.handle, films_watched: 0, bonus_hit: bonusEl.checked });
+          ok = !!res;
+        }
+        if (!ok) toast('Could not save — check your connection.');
+        else render();
       });
 
       grid.appendChild(card);

@@ -20,11 +20,11 @@ body {
   background: var(--bg);
   color: var(--ink);
   transition: background var(--t-slow) var(--ease), color var(--t-slow) var(--ease);
-  /* Aged paper staining */
+  /* Warm ember glow from edges — dark room, old projector light */
   background-image:
-    radial-gradient(ellipse at 15% 20%, rgba(80, 40, 0, 0.10) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 75%, rgba(60, 30, 0, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(40, 20, 0, 0.06) 0%, transparent 60%);
+    radial-gradient(ellipse at 20% 0%, rgba(176, 32, 24, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(180, 60, 0, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(140, 90, 0, 0.04) 0%, transparent 70%);
 }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
@@ -324,10 +324,10 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.072;
+  opacity: 0.055;
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   background-size: 200px 200px;
-  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
 }
 
 /* ── Hazard stripe — warning tape decorative element ─────────── */

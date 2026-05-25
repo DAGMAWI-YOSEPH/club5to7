@@ -1,23 +1,25 @@
 /* ─────────────────────────────────────────────────────────────────
-   Club5to7 · design tokens
-   Edit here, propagates everywhere.
+   Club5to7 · design tokens  ·  single dark theme
    ───────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Color · light — aged warning-poster palette */
-  --bg:           #C8B264;  /* aged hazard yellow */
-  --bg-deep:      #B8A050;
-  --surface:      #D8C47C;
-  --ink:          #100802;  /* near black, warm */
-  --ink-mute:     #5C3E14;
-  --ink-soft:     #8A6828;
-  --rule:         rgba(16, 8, 2, 0.88);
-  --rule-soft:    rgba(16, 8, 2, 0.24);
-  --accent:       #8C1A14;  /* deep warning red */
+  /* Dark · post-apocalyptic warning-poster cinema */
+  --bg:           #0A0402;
+  --bg-deep:      #060201;
+  --surface:      #130806;
+  --ink:          #D4B864;  /* aged gold  */
+  --ink-mute:     #8A6A2C;
+  --ink-soft:     #5C4418;
+  --rule:         rgba(212, 184, 100, 0.70);
+  --rule-soft:    rgba(212, 184, 100, 0.14);
+  --accent:       #B02018;  /* warning red */
   --accent-ink:   #F0E4C0;
-  --accent-soft:  #D4A898;
-  --warn:         #CC4E14;  /* hazard orange */
-  --gold:         #C49010;  /* used very sparingly */
+  --accent-soft:  #2A0C0A;
+  --warn:         #D45A20;  /* hazard orange */
+  --gold:         #C49A20;
+
+  /* Sidebar gets its own dark bg for depth separation */
+  --sidebar-bg:   #0F0603;
 
   /* Type */
   --f-display: "Caprasimo", "Cooper Std", Georgia, serif;
@@ -66,23 +68,6 @@
   --t-fast: 120ms;
   --t-med: 220ms;
   --t-slow: 480ms;
-}
-
-[data-theme="dark"] {
-  /* Dark — quarantine-poster red-black */
-  --bg:           #0A0402;
-  --bg-deep:      #140806;
-  --surface:      #1C0C08;
-  --ink:          #D4B864;  /* aged gold text */
-  --ink-mute:     #8A6A2C;
-  --ink-soft:     #5C4418;
-  --rule:         rgba(212, 184, 100, 0.8);
-  --rule-soft:    rgba(212, 184, 100, 0.18);
-  --accent:       #B02018;  /* bright warning red */
-  --accent-ink:   #F0E4C0;
-  --accent-soft:  #2A0C0A;
-  --warn:         #D45A20;
-  --gold:         #C49A20;
 }
 
 /* Web fonts */

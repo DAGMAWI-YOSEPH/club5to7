@@ -13,8 +13,8 @@
 }
 
 .gate-top {
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--accent);
+  color: var(--accent-ink);
   padding: var(--s-6) var(--s-6) var(--s-5);
 }
 .gate-top .mark {
@@ -22,14 +22,15 @@
   font-size: 32px;
   line-height: 1;
   letter-spacing: -0.02em;
+  color: var(--accent-ink);
 }
-.gate-top .mark em { font-style: normal; color: var(--accent); }
+.gate-top .mark em { font-style: normal; color: var(--ink); }
 .gate-top .tag {
   font-family: var(--f-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(240, 228, 192, 0.65);
   margin-top: 4px;
 }
 
@@ -128,11 +129,11 @@
 
 /* GitHub button */
 .gh-btn {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--rule);
 }
-.gh-btn:hover { opacity: 0.88; }
+.gh-btn:hover { background: var(--ink); color: var(--bg-deep); border-color: var(--ink); }
 
 /* "or" divider */
 .gate-divider {

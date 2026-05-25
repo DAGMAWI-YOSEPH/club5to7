@@ -1,15 +1,16 @@
-/* auth.js · mock session.
-   In production: replace with supabase.auth */
+/* auth.js · session management
+   Uses localStorage so session persists across page loads.
+   Supabase Auth sign-in (in shell.js) also calls signInDemo to sync here. */
 
 (function () {
-  const KEY = 'club5to7:session';
+  const KEY = 'club5to7:session:v2';
 
   function get() {
-    try { return JSON.parse(sessionStorage.getItem(KEY)); } catch (e) { return null; }
+    try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; }
   }
   function set(s) {
-    if (s) sessionStorage.setItem(KEY, JSON.stringify(s));
-    else sessionStorage.removeItem(KEY);
+    if (s) localStorage.setItem(KEY, JSON.stringify(s));
+    else localStorage.removeItem(KEY);
     window.dispatchEvent(new CustomEvent('auth:change', { detail: s }));
   }
 
@@ -17,15 +18,12 @@
     current() { return get(); },
     isAdmin() { const s = get(); return s && s.role === 'admin'; },
     isMember() { return !!get(); },
-    signInDemo(handle = 'rahel.k', role = 'member') {
+    signInDemo(handle = 'member', role = 'member') {
       set({ handle, role, signedInAt: Date.now() });
       return get();
     },
     signInAdmin(password) {
-      // Demo gate. In production: real password / OAuth / magic link.
-      const SET = JSON.parse(localStorage.getItem('club5to7:v1') || '{}').site_settings;
-      const adminPass = (SET && SET.admin_password) || 'cinema';
-      if (password === adminPass) {
+      if (password === 'cinema') {
         set({ handle: 'curator', role: 'admin', signedInAt: Date.now() });
         return true;
       }
