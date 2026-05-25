@@ -41,14 +41,14 @@
     // CTA
     const cta = document.querySelector('#rsvp-cta');
     if (!session) {
-      cta.innerHTML = `<button class="btn primary" onclick="window.openSignIn()">Sign in to RSVP</button>
-                      <span class="muted" style="font-size:13px;margin-left:auto">${going.length} of ${evt.capacity} seats taken</span>`;
+      cta.innerHTML = `<button class="btn primary" onclick="window.openSignIn()">Sign in to join</button>
+                      <span class="muted" style="font-size:13px;margin-left:auto">${going.length} of ${evt.capacity} spots taken</span>`;
     } else if (youGoing) {
-      cta.innerHTML = `<button class="btn" id="cancel-rsvp">Cancel RSVP</button>
-                      <span class="muted" style="font-size:13px;margin-left:auto">You're on the list, @${session.handle}</span>`;
+      cta.innerHTML = `<button class="btn" id="cancel-rsvp">Can't make it</button>
+                      <span class="muted" style="font-size:13px;margin-left:auto">You're in, @${session.handle}</span>`;
       document.querySelector('#cancel-rsvp').addEventListener('click', async () => {
         await db.remove('rsvps', youGoing.id);
-        toast('RSVP cancelled');
+        toast('Got it — removed from the list');
         render();
       });
     } else if (going.length >= evt.capacity) {
@@ -60,11 +60,11 @@
         render();
       });
     } else {
-      cta.innerHTML = `<button class="btn primary" id="do-rsvp">RSVP — hold my seat →</button>
-                      <span class="muted" style="font-size:13px;margin-left:auto">${evt.capacity - going.length} seats left</span>`;
+      cta.innerHTML = `<button class="btn primary" id="do-rsvp">I'll be there →</button>
+                      <span class="muted" style="font-size:13px;margin-left:auto">${evt.capacity - going.length} spots left</span>`;
       document.querySelector('#do-rsvp').addEventListener('click', async () => {
         await db.insert('rsvps', { event_id: evt.id, handle: session.handle, status: 'going' });
-        toast(`You're in. See you Saturday.`);
+        toast(`You're in. See you there.`);
         render();
       });
     }

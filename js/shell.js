@@ -8,7 +8,7 @@
     { page: 'theme-request', href: 'theme-request.html',   label: 'Theme Requests',num: '03' },
     { page: 'digest',        href: 'digest.html',          label: 'The Digest',    num: '04' },
     { page: 'picker',        href: 'picker.html',          label: 'Movie Picker',  num: '05' },
-    { page: 'rsvp',          href: 'rsvp.html',            label: 'RSVP / Events', num: '06' },
+    { page: 'rsvp',          href: 'rsvp.html',            label: 'Gatherings',    num: '06' },
     { page: 'challenges',    href: 'challenges.html',      label: 'Challenges',    num: '07' },
     { page: 'ping-pong',     href: 'ping-pong.html',       label: 'Ping Pong',     num: '08' },
     { page: 'about',         href: 'about.html',           label: 'About',         num: '09' },

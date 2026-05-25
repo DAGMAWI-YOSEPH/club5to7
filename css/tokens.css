@@ -13,9 +13,9 @@
   --ink-soft:     #A39B89;
   --rule:         rgba(25, 23, 15, 0.85);
   --rule-soft:    rgba(25, 23, 15, 0.18);
-  --accent:       #2E46C7;  /* indigo */
-  --accent-ink:   #FBF8F1;
-  --accent-soft:  #E4E7F8;
+  --accent:       #B84D1C;  /* rust */
+  --accent-ink:   #FDF9F5;
+  --accent-soft:  #F6E3D8;
   --warn:         #C8401C;  /* "live" / pinned dot */
   --gold:         #C9A227;  /* used very sparingly */
 
@@ -77,9 +77,9 @@
   --ink-soft:     #5A5447;
   --rule:         rgba(237, 230, 211, 0.85);
   --rule-soft:    rgba(237, 230, 211, 0.16);
-  --accent:       #8AA0FF;
-  --accent-ink:   #08070A;
-  --accent-soft:  #1B1F36;
+  --accent:       #D96830;  /* rust warm */
+  --accent-ink:   #0E0804;
+  --accent-soft:  #2B1208;
   --warn:         #E96A45;
   --gold:         #E0B73C;
 }

@@ -41,6 +41,12 @@
     setText(`#film-runtime-${n}`,  pick.runtime  ? `${pick.runtime} min` : '—');
     setText(`#film-screening-${n}`, pick.screening_date || '—');
     setText(`#film-venue-${n}`,    pick.venue    || '—');
+    // Poster image
+    if (pick.poster_url) {
+      const img = document.querySelector(`#poster-img-${n}`);
+      const box = document.querySelector(`#poster-${n}`);
+      if (img && box) { img.src = pick.poster_url; box.classList.add('has-image'); }
+    }
   }
 
   function setText(sel, v) {

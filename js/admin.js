@@ -374,8 +374,11 @@
       <div class="field"><label>Year</label><input class="input" id="${prefix}-year" value="${escapeHtml(p.year||'')}"></div>
       <div class="field"><label>Country</label><input class="input" id="${prefix}-country" value="${escapeHtml(p.country||'')}"></div>
       <div class="field"><label>Runtime (min)</label><input class="input" id="${prefix}-run" value="${escapeHtml(p.runtime||'')}"></div>
-      <div class="field"><label>Screening</label><input class="input" id="${prefix}-scr" value="${escapeHtml(p.screening_date||'')}"></div>
+      <div class="field"><label>Screening date</label><input class="input" id="${prefix}-scr" value="${escapeHtml(p.screening_date||'')}"></div>
       <div class="field"><label>Venue</label><input class="input" id="${prefix}-venue" value="${escapeHtml(p.venue||'')}"></div>
+      <div class="field col-2"><label>Poster image URL</label>
+        <input class="input" id="${prefix}-poster" value="${escapeHtml(p.poster_url||'')}" placeholder="https://…  (paste any image URL — TMDB, Wikipedia, etc.)">
+        <span class="help">Paste a URL to any 2:3 image. Shows on the home page immediately.</span></div>
       <div class="field col-2"><label>Curator's note</label>
         <textarea class="textarea" id="${prefix}-note">${escapeHtml(p.note||'')}</textarea>
         <span class="help">Three or four sentences. Why this film, why now.</span></div>
@@ -470,12 +473,14 @@
       await db.set('current_pick', {
         title: v('#p1-title'), director: v('#p1-dir'), year: v('#p1-year'),
         country: v('#p1-country'), runtime: v('#p1-run'),
-        screening_date: v('#p1-scr'), venue: v('#p1-venue'), note: v('#p1-note')
+        screening_date: v('#p1-scr'), venue: v('#p1-venue'),
+        poster_url: v('#p1-poster'), note: v('#p1-note')
       });
       await db.set('current_pick_2', {
         title: v('#p2-title'), director: v('#p2-dir'), year: v('#p2-year'),
         country: v('#p2-country'), runtime: v('#p2-run'),
-        screening_date: v('#p2-scr'), venue: v('#p2-venue'), note: v('#p2-note')
+        screening_date: v('#p2-scr'), venue: v('#p2-venue'),
+        poster_url: v('#p2-poster'), note: v('#p2-note')
       });
       const dt = v('#n-date');
       await db.set('next_theme', {
