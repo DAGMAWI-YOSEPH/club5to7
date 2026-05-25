@@ -1,0 +1,186 @@
+/* ─────────────────────────────────────────────────────────────────
+   Sidebar · vertical "filmstrip" with perforations along edge
+   ───────────────────────────────────────────────────────────────── */
+
+.sidebar {
+  background: var(--ink);
+  color: var(--bg);
+  padding: var(--s-5) 0 var(--s-5) var(--s-4);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  border-right: 1px solid var(--ink);
+}
+
+/* Perforations: holes punched in the right edge (overlaying the main bg color) */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 14px;
+  background:
+    radial-gradient(circle at 7px 12px, var(--bg) 0 3.5px, transparent 4px) 0 0 / 14px 28px repeat-y;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s-2) var(--s-5) var(--s-2) 0;
+  margin-bottom: var(--s-2);
+  cursor: pointer;
+}
+.brand .mark {
+  font-family: var(--f-display);
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--bg);
+}
+.brand .mark em {
+  font-style: normal;
+  color: var(--accent);
+}
+.brand .tag {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: var(--s-5);
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 9px 12px;
+  border-radius: 4px;
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  position: relative;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.nav a:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--bg);
+}
+.nav a.active {
+  color: var(--bg);
+  background: rgba(255,255,255,0.08);
+}
+.nav a.active::before {
+  content: "";
+  position: absolute;
+  left: -6px; top: 6px; bottom: 6px;
+  width: 3px; background: var(--accent);
+  border-radius: 3px;
+}
+
+.nav a .num {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.4);
+  width: 24px;
+}
+.nav a.active .num { color: var(--accent); }
+
+.nav .group-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding: var(--s-4) 12px 6px;
+}
+
+.sidebar-foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding-right: var(--s-5);
+}
+.sidebar-foot .session {
+  display: flex; align-items: center; gap: var(--s-2);
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  font-size: 12.5px;
+}
+.sidebar-foot .session .avatar {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-display); font-size: 13px;
+}
+.sidebar-foot .session .who { font-weight: 500; color: var(--bg); }
+.sidebar-foot .session .role {
+  font-family: var(--f-mono); font-size: 10px;
+  color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+.sidebar-foot .theme-toggle {
+  display: flex; gap: 4px;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.06);
+  width: fit-content;
+}
+.sidebar-foot .theme-toggle button {
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.sidebar-foot .theme-toggle button.on {
+  background: var(--bg); color: var(--ink);
+}
+
+.sidebar-foot .reel-info {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.12em;
+  display: flex; justify-content: space-between;
+}
+
+/* Mobile: collapse to a top bar with a drawer */
+@media (max-width: 880px) {
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: auto; width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 12px 16px;
+    z-index: 80;
+  }
+  .sidebar::before { display: none; }
+  .brand { flex-direction: row; align-items: baseline; gap: 8px; margin: 0; padding: 0; }
+  .brand .tag { display: none; }
+  .nav { display: none; }
+  .sidebar-foot { flex-direction: row; align-items: center; margin-left: auto; padding: 0; }
+  .sidebar-foot .reel-info, .sidebar-foot .session { display: none; }
+}

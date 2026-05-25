@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · Admin</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <!-- Quill for WYSIWYG -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.bubble.css">
+</head>
+<body data-page="admin">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="10 Admin">
+
+      <div class="page-intro">
+        <div>
+          <span class="eyebrow">10 · Studio</span>
+          <h1 style="margin-top:6px">The Curator's Desk</h1>
+          <p class="sub">
+            Everything on this site is run from here. Type in English. Save.
+            It appears on the public side instantly.
+          </p>
+        </div>
+        <div class="crumbs">
+          <span>CMS · v0.1</span>
+          <span>·</span>
+          <span>NO CODE NEEDED</span>
+        </div>
+      </div>
+
+      <!-- Gate (shown when not admin) -->
+      <div id="admin-gate"></div>
+
+      <!-- Main CMS (shown when admin) -->
+      <div class="admin-app hide" id="admin-app">
+        <nav class="admin-nav" id="admin-nav"></nav>
+        <div class="admin-pane" id="admin-pane"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <!-- Quill -->
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="js/admin-digest.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

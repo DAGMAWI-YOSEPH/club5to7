@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · Movie Picker</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/picker.css">
+</head>
+<body data-page="picker">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="05 Picker">
+
+      <div class="page-intro">
+        <div>
+          <span class="eyebrow">05 · Decide</span>
+          <h1 style="margin-top:6px">The Wheel</h1>
+          <p class="sub">
+            When the room can't agree, surrender to physics. The pool is editable
+            from the admin — add, remove, retire films at will.
+          </p>
+        </div>
+        <div class="crumbs">
+          <span>POOL · <span id="pool-count">—</span> FILMS</span>
+        </div>
+      </div>
+
+      <div class="picker-layout">
+        <div class="wheel-stage">
+          <div class="wheel-wrap">
+            <div class="wheel-pointer"></div>
+            <svg id="wheel" class="wheel" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="wheel-hub">5/7</div>
+          </div>
+          <button class="spin-btn" id="spin">Spin the wheel</button>
+        </div>
+
+        <div class="picker-side">
+          <div class="result-card" id="result">
+            <span class="eyebrow">The result</span>
+            <div class="title"><em>Spin to see</em></div>
+            <span class="by">WAITING FOR PHYSICS</span>
+            <div class="actions">
+              <a class="btn" href="rsvp.html">Use this Saturday →</a>
+              <button class="btn ghost" onclick="document.getElementById('spin').click()">Spin again</button>
+            </div>
+          </div>
+
+          <div class="card pool-card">
+            <h4>The pool · curated by the admin</h4>
+            <ul class="pool" id="pool"></ul>
+          </div>
+
+          <div class="card">
+            <h4 style="font-family:var(--f-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px">Recent spins</h4>
+            <ul class="spin-history" id="history"></ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <script src="js/picker.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await new Promise(r => setTimeout(r, 60));
+      const films = (await db.list('film_pool')).filter(f => f.in_rotation);
+      const el = document.querySelector('#pool-count');
+      if (el) el.textContent = films.length;
+    });
+  </script>
+</body>
+</html>

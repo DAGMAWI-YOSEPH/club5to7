@@ -1,0 +1,107 @@
+/* ─── Hot Takes ─────────────────────────────────────────────── */
+
+.takes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  margin-bottom: var(--s-7);
+}
+@media (max-width: 880px) { .takes-grid { grid-template-columns: 1fr; } }
+
+.take {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-card);
+  padding: var(--s-5);
+  display: flex; flex-direction: column; gap: var(--s-3);
+  position: relative;
+  transition: transform var(--t-fast) var(--ease);
+}
+.take:hover { transform: translateY(-2px); }
+.take.pinned { border-color: var(--accent); }
+.take.pinned::before {
+  content: "PINNED";
+  position: absolute; top: -10px; left: var(--s-4);
+  background: var(--accent); color: var(--accent-ink);
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.16em;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+}
+
+.take .meta {
+  display: flex; align-items: center; gap: var(--s-3);
+  font-family: var(--f-mono); font-size: var(--t-mono);
+  color: var(--ink-mute);
+}
+.take .author {
+  font-weight: 500; color: var(--ink);
+}
+.take h3 {
+  font-family: var(--f-display);
+  font-size: 28px; line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.take .body { font-size: 16px; line-height: 1.55; color: var(--ink); }
+.take .foot {
+  display: flex; align-items: center; gap: var(--s-2);
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--rule-soft);
+}
+.take .vote-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--r-pill);
+  font-family: var(--f-mono); font-size: 12px;
+}
+.take .vote-btn:hover { border-color: var(--accent); color: var(--accent); }
+.take .vote-btn.voted { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+.take .quote-mark {
+  font-family: "Noto Sans Ethiopic", serif;
+  position: absolute; right: 12px; top: 6px;
+  font-size: 36px; color: var(--rule-soft);
+  pointer-events: none;
+}
+
+/* Compose */
+.compose {
+  background: var(--bg-deep);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-card);
+  padding: var(--s-5);
+  margin-bottom: var(--s-7);
+}
+.compose h3 { font-family: var(--f-display); font-size: 28px; margin-bottom: var(--s-3); }
+.compose .row { display: flex; gap: var(--s-3); margin-top: var(--s-3); }
+.compose textarea { min-height: 90px; }
+.compose .footnote { font-family: var(--f-mono); font-size: 11px; color: var(--ink-mute); }
+
+/* Sign in nudge */
+.locked {
+  background: var(--bg-deep);
+  border: 1px dashed var(--rule);
+  border-radius: var(--r-card);
+  padding: var(--s-6);
+  text-align: center;
+  margin-bottom: var(--s-7);
+}
+.locked h3 { font-family: var(--f-display); font-size: 28px; margin-bottom: 8px; }
+.locked p { color: var(--ink-mute); max-width: 44ch; margin: 0 auto var(--s-3); }
+
+/* Filter row */
+.filter-row {
+  display: flex; gap: var(--s-2); flex-wrap: wrap;
+  margin-bottom: var(--s-5);
+}
+.filter-row button {
+  padding: 6px 12px;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--r-pill);
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.filter-row button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }

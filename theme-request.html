@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · Theme Requests</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/theme-request.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500&display=swap">
+</head>
+<body data-page="theme-request">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="03 Theme Requests">
+
+      <div class="page-intro">
+        <div>
+          <span class="eyebrow">03 · The next month</span>
+          <h1 style="margin-top:6px">Theme requests</h1>
+          <p class="sub">
+            Pitch a theme for next month. Vote on the ones you like. The curator queues
+            one or two each cycle. We've used reader picks for 6 of the last 11 months.
+          </p>
+        </div>
+        <div class="crumbs">
+          <span class="ge">ሐሳብ</span><span>·</span><span>QUEUE</span>
+        </div>
+      </div>
+
+      <div class="theme-layout">
+        <div id="theme-form-root"></div>
+
+        <div class="queue">
+          <div class="row between" style="align-items:baseline">
+            <h3>The queue</h3>
+            <span class="meta-line">SORTED BY VOTES · UPDATED LIVE</span>
+          </div>
+          <div id="theme-list" style="display:flex;flex-direction:column;gap:12px"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <script src="js/theme-request.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · About</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500&display=swap">
+</head>
+<body data-page="about">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="09 About">
+
+      <div class="page-intro" style="margin-bottom:48px">
+        <div>
+          <span class="eyebrow">09 · About</span>
+        </div>
+        <div class="crumbs">
+          <span class="ge">ስለ እኛ</span><span>·</span><span>ABOUT US</span>
+        </div>
+      </div>
+
+      <section class="about-hero">
+        <div>
+          <h1>A film club for people who like the <em>dark</em>.</h1>
+          <p class="muted" style="margin-top:16px;max-width:48ch;font-size:18px;line-height:1.5">
+            Founded in Addis Ababa, late 2023. We watch one film a month
+            together, between five and seven in the evening. The hour matters.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="n">31</div><div class="l">Films watched</div></div>
+          <div class="stat"><div class="n">12</div><div class="l">Months running</div></div>
+          <div class="stat"><div class="n">47</div><div class="l">Members</div></div>
+          <div class="stat"><div class="n">02</div><div class="l">Folding chairs left</div></div>
+        </div>
+      </section>
+
+      <section class="about-body">
+        <div class="prose" id="about-prose">
+          <p>
+            Club5to7 began in a cramped flat off Bole Road in late 2023, with
+            three friends, a borrowed projector, and a print of <em>Sembène</em>'s
+            <em>Black Girl</em>. We sat on cushions. We argued politely. We did it again the next month.
+          </p>
+          <p>
+            We watch one film a month, together, between five and seven in
+            the evening — a softer hour, when the city is loud but distracted.
+            We pick a theme. We pick a film inside the theme. We discuss
+            afterwards over coffee from a round pot.
+          </p>
+          <p>
+            We are unfussy and unaffiliated. There are no critics here, only
+            people who like the dark. Membership is by introduction. The
+            digest is by us, for us. The folding chairs are limited.
+          </p>
+          <p style="font-family:var(--f-display);font-size:36px;line-height:1.1;letter-spacing:-0.02em;margin-top:32px;color:var(--ink)">
+            — <em>The Editors</em>
+          </p>
+        </div>
+
+        <div>
+          <div class="video-card">
+            <div class="play">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="caption">INTRO FILM · PLACEHOLDER · CMS can swap in a YouTube or Vimeo URL</div>
+          </div>
+          <p class="mono muted" style="margin-top:12px;font-size:11px">
+            2 MIN · SHOT BY MIKAEL T. · MAY 2025
+          </p>
+        </div>
+      </section>
+
+      <div class="section-head">
+        <h2>What we believe (kind of)</h2>
+        <span class="meta">Three half-rules</span>
+      </div>
+
+      <div class="values">
+        <div class="value">
+          <span class="n">— 01</span>
+          <h3>Watch slowly, talk briefly</h3>
+          <p>We don't review films, we have arguments about them. The film is the long part. The argument is the short part. The coffee is the longest part.</p>
+        </div>
+        <div class="value">
+          <span class="n">— 02</span>
+          <h3>African cinema first, always</h3>
+          <p>Not exclusively. But by default. Sembène, Gerima, Mambéty, Mehari — these are our cornerstones. Everything else is a comparison.</p>
+        </div>
+        <div class="value">
+          <span class="n">— 03</span>
+          <h3>The room is small on purpose</h3>
+          <p>Eighteen chairs. That's the cap. When the room outgrows it, we split into two, not bigger. Intimacy is the format.</p>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <h3>Get in touch</h3>
+        <a class="btn" href="#">@club5to7</a>
+        <a class="btn" href="#">t.me/club5to7</a>
+        <a class="btn primary" href="#">projection@club5to7.xyz</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <script>
+    (async () => {
+      await new Promise(r => setTimeout(r, 60));
+      const s = await db.get('site_settings', {});
+      if (s.about_body) {
+        const el = document.querySelector('#about-prose');
+        if (el) {
+          const paras = s.about_body.split(/\n\n+/).map(p =>
+            `<p>${(p || '').replace(/\*([^*]+)\*/g, '<em>$1</em>')}</p>`
+          ).join('');
+          el.innerHTML = paras + '<p style="font-family:var(--f-display);font-size:36px;line-height:1.1;letter-spacing:-0.02em;margin-top:32px"><em>— The Editors</em></p>';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

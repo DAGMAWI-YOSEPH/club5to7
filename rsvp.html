@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · RSVP</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/rsvp.css">
+</head>
+<body data-page="rsvp">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="06 RSVP">
+
+      <div class="page-intro">
+        <div>
+          <span class="eyebrow">06 · Saturday</span>
+          <h1 style="margin-top:6px">RSVP</h1>
+          <p class="sub">
+            Eighteen folding chairs, twelve cushions, two coffee pots, one projector.
+            Hold your seat. Cancel by Friday if your plans change.
+          </p>
+        </div>
+        <div class="crumbs">
+          <span>SEATS · <span id="ev-cap-label">—</span></span>
+          <span>·</span>
+          <span><span id="cap-remaining">—</span> LEFT</span>
+        </div>
+      </div>
+
+      <section class="rsvp-hero">
+        <div class="event-info">
+          <span class="eyebrow">Next screening</span>
+          <h2 id="ev-title">—</h2>
+          <p class="body" id="ev-desc">—</p>
+          <div class="meta">
+            <span><strong>Date</strong><span id="ev-date">—</span></span>
+            <span><strong>Venue</strong><span id="ev-venue">—</span></span>
+            <span><strong>Capacity</strong><span><span id="ev-cap-label-2"></span></span></span>
+          </div>
+
+          <div class="cap-card" style="margin-top:8px">
+            <div class="cap-num">
+              <div><span class="big" id="cap-taken">0</span> <span class="of">of <span id="cap-total">0</span></span></div>
+              <span class="mono" style="font-size:11px;color:var(--ink-mute);letter-spacing:0.1em;text-transform:uppercase">LIVE COUNT</span>
+            </div>
+            <div class="cap-bar" id="cap-bar"></div>
+            <div class="attendees" id="attendees"></div>
+            <div class="row" id="rsvp-cta" style="margin-top:12px;gap:12px;align-items:center"></div>
+          </div>
+
+          <div class="payment-note" id="pay"></div>
+        </div>
+
+        <div class="event-cover">
+          <span class="pmark">CLUB5TO7 · SCREENING NOTICE</span>
+          <span class="ptitle" id="cover-title">TEZA</span>
+          <span class="pdate" id="cover-date">—</span>
+          <div style="flex:1"></div>
+          <span class="pcaption">EVENT COVER · DROP A POSTER HERE IN CMS · 4:5</span>
+        </div>
+      </section>
+
+      <div class="section-head">
+        <h2>House rules</h2>
+        <span class="meta">A short, polite list</span>
+      </div>
+
+      <div class="values" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div class="card flat" style="border-top:1px solid var(--rule);border-radius:0;padding:16px 0">
+          <span class="mono muted" style="font-size:11px">— 01</span>
+          <h3 class="display" style="font-size:24px;margin-top:6px">No phones in the room</h3>
+          <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.55">Pocket or off. The blue light ruins it for everyone behind you.</p>
+        </div>
+        <div class="card flat" style="border-top:1px solid var(--rule);border-radius:0;padding:16px 0">
+          <span class="mono muted" style="font-size:11px">— 02</span>
+          <h3 class="display" style="font-size:24px;margin-top:6px">Show up at 16:45</h3>
+          <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.55">Doors close at 17:00 sharp. The door creaks and ruins the opening shot.</p>
+        </div>
+        <div class="card flat" style="border-top:1px solid var(--rule);border-radius:0;padding:16px 0">
+          <span class="mono muted" style="font-size:11px">— 03</span>
+          <h3 class="display" style="font-size:24px;margin-top:6px">Stay for the talk</h3>
+          <p class="muted" style="font-size:14px;margin-top:8px;line-height:1.55">The film is half the night. The argument after is the other half.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <script src="js/rsvp.js"></script>
+</body>
+</html>

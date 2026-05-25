@@ -1,0 +1,138 @@
+/* /my-admin · Supabase Auth login gate */
+
+.supabase-gate {
+  max-width: 440px;
+  margin: 48px auto 0;
+}
+
+.gate-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.gate-top {
+  background: var(--ink);
+  color: var(--bg);
+  padding: var(--s-6) var(--s-6) var(--s-5);
+}
+.gate-top .mark {
+  font-family: var(--f-display);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.gate-top .mark em { font-style: normal; color: var(--accent); }
+.gate-top .tag {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+}
+
+.gate-body { padding: var(--s-6); }
+
+.gate-body h2 {
+  font-family: var(--f-display);
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.gate-body .sub {
+  font-size: var(--t-s);
+  color: var(--ink-mute);
+  margin-bottom: var(--s-5);
+}
+.gate-body .col { display: flex; flex-direction: column; gap: var(--s-4); }
+
+.gate-error {
+  background: rgba(200, 64, 28, 0.08);
+  border: 1px solid var(--warn);
+  border-radius: var(--r-card);
+  padding: 10px 14px;
+  font-size: var(--t-s);
+  color: var(--warn);
+  font-family: var(--f-mono);
+}
+
+.gate-foot {
+  padding: var(--s-4) var(--s-6);
+  border-top: 1px dashed var(--rule-soft);
+  display: flex;
+  justify-content: center;
+}
+
+.gate-link {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.gate-link:hover { color: var(--ink); }
+
+/* Reset password view */
+.reset-sent {
+  text-align: center;
+  padding: var(--s-6) 0;
+}
+.reset-sent .check {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto var(--s-4);
+}
+
+/* Session bar at top of CMS */
+.session-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background: var(--bg-deep);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--r-card);
+  margin-bottom: var(--s-5);
+  font-size: var(--t-s);
+}
+.session-bar .avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-display);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.session-bar .email { font-weight: 500; }
+.session-bar .role {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.session-bar .signout-btn {
+  margin-left: auto;
+}
+
+/* Spinner for loading state */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid var(--rule-soft);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}

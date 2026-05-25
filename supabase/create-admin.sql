@@ -1,0 +1,33 @@
+-- Club5to7 · Create your admin account
+-- ─────────────────────────────────────────────────────────────────────────────
+-- You do NOT need to run SQL for this. Use the Supabase dashboard instead.
+--
+-- STEPS:
+--   1. Go to https://supabase.com/dashboard/project/pyrsqzlvnhhzokzxxolr
+--   2. Click "Authentication" in the left sidebar
+--   3. Click "Users" tab
+--   4. Click "Add user" → "Create new user"
+--   5. Enter your email and a strong password
+--   6. Click "Create user"
+--   7. Open /my-admin.html, sign in with that email + password
+--
+-- That's it. No SQL required.
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- OPTIONAL: If you ever need to programmatically create a user
+-- (requires a server with the service-role key, NOT the anon key):
+--
+-- curl -X POST 'https://pyrsqzlvnhhzokzxxolr.supabase.co/auth/v1/admin/users' \
+--   -H 'apikey: YOUR_SERVICE_ROLE_KEY' \
+--   -H 'Authorization: Bearer YOUR_SERVICE_ROLE_KEY' \
+--   -H 'Content-Type: application/json' \
+--   -d '{"email":"you@example.com","password":"your-password","email_confirm":true}'
+--
+-- ─────────────────────────────────────────────────────────────────────────────
+-- ALSO: Add your site URL to Supabase Auth allowed redirects so password
+-- reset emails work:
+--   Authentication → URL Configuration → Site URL → set to your Vercel URL
+--   Authentication → URL Configuration → Redirect URLs → add:
+--     http://localhost:3000/my-admin.html  (for local dev)
+--     https://your-site.vercel.app/my-admin.html  (for production)
+-- ─────────────────────────────────────────────────────────────────────────────

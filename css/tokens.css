@@ -1,0 +1,88 @@
+/* ─────────────────────────────────────────────────────────────────
+   Club5to7 · design tokens
+   Edit here, propagates everywhere.
+   ───────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Color · light */
+  --bg:           #F4EFE5;
+  --bg-deep:      #EAE4D6;
+  --surface:      #FBF8F1;
+  --ink:          #19170F;
+  --ink-mute:     #6B6557;
+  --ink-soft:     #A39B89;
+  --rule:         rgba(25, 23, 15, 0.85);
+  --rule-soft:    rgba(25, 23, 15, 0.18);
+  --accent:       #2E46C7;  /* indigo */
+  --accent-ink:   #FBF8F1;
+  --accent-soft:  #E4E7F8;
+  --warn:         #C8401C;  /* "live" / pinned dot */
+  --gold:         #C9A227;  /* used very sparingly */
+
+  /* Type */
+  --f-display: "Caprasimo", "Cooper Std", Georgia, serif;
+  --f-body:    "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
+  --f-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+  --t-xxl: clamp(56px, 9vw, 144px);
+  --t-xl:  clamp(40px, 5.6vw, 84px);
+  --t-l:   clamp(28px, 3.2vw, 44px);
+  --t-m:   22px;
+  --t-base:16px;
+  --t-s:   14px;
+  --t-xs:  12px;
+  --t-mono:12.5px;
+
+  /* Space */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10:128px;
+
+  /* Geometry */
+  --r-sharp: 0px;
+  --r-card:  6px;
+  --r-soft:  14px;
+  --r-pill:  999px;
+
+  --rule-w: 1px;
+  --rule-strong: 1.5px;
+
+  /* Layout */
+  --sidebar-w: 232px;
+  --sidebar-w-collapsed: 64px;
+  --max-content: 1180px;
+  --gutter: clamp(20px, 4vw, 56px);
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --ease-out: cubic-bezier(.2,.9,.3,1);
+  --t-fast: 120ms;
+  --t-med: 220ms;
+  --t-slow: 480ms;
+}
+
+[data-theme="dark"] {
+  --bg:           #0C0B08;
+  --bg-deep:      #080705;
+  --surface:      #15130E;
+  --ink:          #EDE6D3;
+  --ink-mute:     #8D8675;
+  --ink-soft:     #5A5447;
+  --rule:         rgba(237, 230, 211, 0.85);
+  --rule-soft:    rgba(237, 230, 211, 0.16);
+  --accent:       #8AA0FF;
+  --accent-ink:   #08070A;
+  --accent-soft:  #1B1F36;
+  --warn:         #E96A45;
+  --gold:         #E0B73C;
+}
+
+/* Web fonts */
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap");

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · Now Showing</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500&display=swap">
+</head>
+<body data-page="home">
+
+  <!-- shell.js injects the sidebar -->
+
+  <main class="main">
+    <div class="main-inner">
+
+      <!-- Marquee row -->
+      <div class="home-marquee" data-screen-label="01 Home">
+        <span class="live"><span class="dot"></span> SCREENING THIS SATURDAY</span>
+        <span class="sep">·</span>
+        <span id="today">—</span>
+        <span class="sep">·</span>
+        <span class="ge">ሰላም</span>
+        <span>Welcome back, projectionist</span>
+      </div>
+
+      <!-- Theme banner -->
+      <section class="theme-banner" aria-label="Monthly theme">
+        <div class="eyebrow-row">
+          <span>Theme · <span id="theme-month">May 2026</span></span>
+          <span>Issue 03 / Reel A</span>
+        </div>
+        <h1 id="theme-name" class="display">Films of <em>Return</em></h1>
+        <p class="blurb" id="theme-blurb"></p>
+
+        <div class="reveal">
+          <div>Next theme reveals</div>
+          <div class="next-name" id="next-theme-name">—</div>
+        </div>
+      </section>
+
+      <!-- Now showing -->
+      <section class="now-showing" aria-label="This month's film">
+        <div class="poster" aria-label="Film poster placeholder">
+          <div class="reel-perfs"></div>
+          <div class="reel-perfs right"></div>
+          <div class="poster-inner">
+            <span class="pmark">CLUB5TO7 · MAY · 01 / 01</span>
+            <span class="ptitle">TEZA</span>
+            <span class="pdir">DIR HAILE GERIMA · 1985</span>
+            <div style="height:80px"></div>
+            <span class="pmark" style="opacity:0.5;font-size:9px;letter-spacing:0.1em">[POSTER · 2:3 · drop image in CMS]</span>
+          </div>
+        </div>
+
+        <div class="film-details">
+          <div class="stamp">This month's pick · #07</div>
+          <h2 id="film-title">Teza</h2>
+
+          <div class="credits">
+            <span><strong>Director</strong><span id="film-director">Haile Gerima</span></span>
+            <span><strong>Year</strong><span id="film-year">1985</span></span>
+            <span><strong>Country</strong><span id="film-country">Ethiopia / Germany</span></span>
+            <span><strong>Runtime</strong><span id="film-runtime">140 min</span></span>
+          </div>
+
+          <p class="note" id="film-note"></p>
+
+          <div class="meta-row">
+            <span class="mono"><strong style="color:var(--ink);font-weight:600">SCREENING ·</strong> <span id="film-screening">—</span></span>
+            <span class="mono"><strong style="color:var(--ink);font-weight:600">VENUE ·</strong> <span id="film-venue">—</span></span>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn primary" href="rsvp.html">RSVP for Saturday →</a>
+            <a class="btn" href="digest.html">Read the May digest</a>
+            <a class="btn ghost" href="picker.html">Spin the wheel</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick tiles -->
+      <div class="section-head">
+        <h2>The rest of the reel</h2>
+        <span class="meta">9 more rooms to wander into →</span>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="hot-takes.html">
+          <span class="num">02 · Members say</span>
+          <h3>Hot Takes</h3>
+          <p>Short opinions, badly defended, mostly correct. Pin your favourite, fight the rest.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a class="tile" href="digest.html">
+          <span class="num">04 · Read</span>
+          <h3>The Biweekly Digest</h3>
+          <p>A small film magazine that arrives every other Friday and never apologises.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a class="tile" href="picker.html">
+          <span class="num">05 · Decide</span>
+          <h3>The Wheel</h3>
+          <p>When you can't agree on what to watch, surrender to centripetal force.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a class="tile" href="rsvp.html">
+          <span class="num">06 · Saturday</span>
+          <h3>RSVP</h3>
+          <p>Eighteen folding chairs, twelve cushions, two coffee pots. Hold your seat.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a class="tile" href="challenges.html">
+          <span class="num">07 · Stretch</span>
+          <h3>Challenges</h3>
+          <p>Watch five Sembènes in May. Watch four shorts in a fortnight. Earn lukewarm bragging rights.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a class="tile" href="ping-pong.html">
+          <span class="num">08 · Detour</span>
+          <h3>Ping Pong</h3>
+          <p>Because every cinema lobby should have a paddle and a wall.</p>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Reveal card -->
+      <section class="reveal-card" id="reveal-card">
+        <div>
+          <div class="eyebrow">Next month · sealed envelope</div>
+          <h3>The June theme reveals in</h3>
+          <p class="teaser" id="next-teaser">Six films about being alone with the windows open.</p>
+        </div>
+        <div class="countdown" id="countdown" aria-label="Countdown to next theme reveal">
+          <div class="unit" data-d><div class="n">00</div><div class="l">Days</div></div>
+          <div class="unit" data-h><div class="n">00</div><div class="l">Hours</div></div>
+          <div class="unit" data-m><div class="n">00</div><div class="l">Min</div></div>
+          <div class="unit" data-s><div class="n">00</div><div class="l">Sec</div></div>
+        </div>
+      </section>
+
+      <div class="print-bar">
+        <span>Club5to7 · Addis Ababa · printed in browser</span>
+        <span>Reel A · v0.1 · ሰላም</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- core -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/shell.js"></script>
+  <!-- page -->
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · Hot Takes</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/hot-takes.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500&display=swap">
+</head>
+<body data-page="hot-takes">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="02 Hot Takes">
+
+      <div class="page-intro">
+        <div>
+          <span class="eyebrow">02 · Members say</span>
+          <h1 style="margin-top:6px">Hot Takes</h1>
+          <p class="sub">
+            Short, badly defended, mostly correct. Members write them, admin reads them,
+            <span class="ge" style="color:var(--accent)">እ</span>verybody fights about them.
+          </p>
+        </div>
+        <div class="crumbs">
+          <span>RECEIPT</span><span>·</span><span>HT-MAY-2026</span>
+        </div>
+      </div>
+
+      <div id="compose-root"></div>
+
+      <div class="row between mb-5" style="margin-top:8px">
+        <div class="filter-row">
+          <button class="on" data-sort="hot">Hot</button>
+          <button data-sort="new">New</button>
+          <button data-sort="pinned">Pinned</button>
+        </div>
+        <span class="mono muted">VOTES BY CLUB MEMBERS · UPDATED LIVE</span>
+      </div>
+
+      <div class="takes-grid" id="takes-grid"></div>
+
+      <div class="print-bar" style="margin-top:48px;padding-top:24px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--ink-mute);letter-spacing:0.1em;text-transform:uppercase">
+        <span>Moderated by hand. Slowly. Lovingly.</span>
+        <span>HT · v0.1</span>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <script src="js/hot-takes.js"></script>
+</body>
+</html>

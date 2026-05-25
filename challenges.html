@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Club5to7 · Challenges</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/challenges.css">
+</head>
+<body data-page="challenges">
+
+
+  <main class="main">
+    <div class="main-inner" data-screen-label="07 Challenges">
+
+      <div class="page-intro">
+        <div>
+          <span class="eyebrow">07 · Stretch</span>
+          <h1 style="margin-top:6px">Movie challenges</h1>
+          <p class="sub">
+            Themed marathons, scored on a 160 / 10 / 30 base.
+            160 for finishing, 10 per film, 30 for the bonus pick.
+            Lukewarm bragging rights guaranteed.
+          </p>
+        </div>
+        <div class="crumbs">
+          <span>SCORING · 160 / 10 / 30</span>
+        </div>
+      </div>
+
+      <div class="challenges-grid" id="challenges-grid"></div>
+
+      <div class="section-head">
+        <h2>Leaderboard</h2>
+        <span class="meta">Cumulative · all active challenges</span>
+      </div>
+
+      <div class="card lb-card">
+        <div class="lb" id="leaderboard"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/shell.js"></script>
+  <script src="js/challenges.js"></script>
+</body>
+</html>
